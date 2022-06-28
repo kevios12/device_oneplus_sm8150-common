@@ -26,7 +26,8 @@ android_app {
 
     static_libs: [
         "org.lineageos.settings.resources",
-    ],
+        "vendor.oneplus.hardware.camera-V1.0-java", 
+   ],
 
     resource_dirs: ["res"],
 

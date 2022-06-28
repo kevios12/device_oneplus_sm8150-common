@@ -74,7 +74,6 @@
         <receiver
             android:name="com.yaap.device.DeviceSettings.Startup"
             android:directBootAware="true"
-            android:exported="false" >
             <intent-filter android:priority="100" >
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
@@ -158,5 +157,10 @@
                 <action android:name="android.content.action.SEARCH_INDEXABLES_PROVIDER" />
             </intent-filter>
         </provider>
+=======
+        <service
+            android:name=".ClientPackageObserverService"
+            android:exported="false" />
+>>>>>>> 4585f9c (sm8150-common: Add OOSCamera support (#2))
     </application>
 </manifest>

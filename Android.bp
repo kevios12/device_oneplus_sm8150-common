@@ -1,5 +1,6 @@
 soong_namespace {
     imports: ["hardware/qcom-caf/bootctrl"],
+    imports: ["device/oneplus/common"],
 }
 
 prebuilt_hidl_interfaces {
