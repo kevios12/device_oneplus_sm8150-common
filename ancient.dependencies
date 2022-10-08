@@ -2,14 +2,14 @@
   {
     "repository"  : "kernel_oneplus_sm8150",
     "target_path" : "kernel/oneplus/sm8150",
-    "branch"      : "twelve",
-    "remote"      : "pixel-devices"
+    "branch"      : "twelve-wip",
+    "remote"      : "kevios12"
   },
   {
     "repository"  : "vendor_oneplus_sm8150-common",
     "target_path" : "vendor/oneplus/sm8150-common",
     "branch"      : "twelve",
-    "remote"      : "pixel-devices-blobs"
+    "remote"      : "kevios12"
   },
   {
     "repository"  : "hardware_oneplus",
@@ -18,9 +18,9 @@
     "remote"      : "pixel"
   },
   {
-    "repository"  : "vendor_oneplus_sm8150_apps",
-    "target_path" : "vendor/oneplus/sm8150/apps",
-    "branch"      : "twelve",
-    "remote"      : "pixel-devices-blobs"
+    "repository"  : "vendor_oneplus_cameras",
+    "target_path" : "vendor/oneplus/camera",
+    "branch"      : "A12.1",
+    "remote"      : "flamingo-gitlab"
   }
 ]

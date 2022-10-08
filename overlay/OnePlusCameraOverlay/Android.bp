@@ -2,5 +2,5 @@ runtime_resource_overlay {
     name: "OnePlusCameraOverlay",
     certificate: "platform",
     sdk_version: "current",
-    product_specific: true
+    system_ext_specific: true
 }
