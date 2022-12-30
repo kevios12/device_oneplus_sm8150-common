@@ -22,5 +22,11 @@
     "target_path" : "vendor/oneplus/camera",
     "branch"      : "A12.1",
     "remote"      : "flamingo-gitlab"
+  },
+  {
+    "repository"  : "hardware_dolby",
+    "target_path" : "hardware/dolby",
+    "branch"      : "A13",
+    "remote"      : "FlamingoOS-Devices"
   }
 ]
