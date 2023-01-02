@@ -22,7 +22,7 @@ PRODUCT_COPY_FILES += \
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay \
-    $(LOCAL_PATH)/overlay-yaap
+    $(LOCAL_PATH)/overlay-ancient
 
 PRODUCT_ENFORCE_RRO_TARGETS := *
 
@@ -391,8 +391,8 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/privapp-permissions-qti.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-permissions-qti.xml
 
 # Touch
-PRODUCT_PACKAGES += \
-    vendor.lineage.touch@1.0-service.oneplus_msmnile
+#PRODUCT_PACKAGES += \
+#    vendor.lineage.touch@1.0-service.oneplus_msmnile
 
 # tri-state key
 PRODUCT_PACKAGES += \
@@ -445,19 +445,20 @@ PRODUCT_PACKAGES += \
     libnl \
     libwfdaac_vendor
 
-# Dex to make OTA go faster
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    dalvik.vm.boot-dex2oat-cpu-set=1,2,3,4,5,6,7 \
-    dalvik.vm.boot-dex2oat-threads=7 \
-    dalvik.vm.image-dex2oat-cpu-set=0,1,2,3,4,5,6,7 \
-    dalvik.vm.image-dex2oat-threads=8
+## Dex to make OTA go faster
+#PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+#    dalvik.vm.boot-dex2oat-cpu-set=1,2,3,4,5,6,7 \
+#    dalvik.vm.boot-dex2oat-threads=7 \
+#    dalvik.vm.image-dex2oat-cpu-set=0,1,2,3,4,5,6,7 \
+#    dalvik.vm.image-dex2oat-threads=8
 
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     ro.surface_flinger.force_hwc_copy_for_virtual_displays=true \
     ro.surface_flinger.has_HDR_display=true \
     ro.surface_flinger.has_wide_color_display=true \
-    ro.surface_flinger.max_frame_buffer_acquired_buffers=3 \
-    ro.surface_flinger.max_virtual_display_dimension=4096 \
     ro.surface_flinger.protected_contents=true \
     ro.surface_flinger.use_color_management=true \
     ro.surface_flinger.wcg_composition_dataspace=143261696
+
+PRODUCT_PROPERTY_OVERRIDES += \
+   ro.control_privapp_permissions=log
