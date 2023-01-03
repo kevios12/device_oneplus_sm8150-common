@@ -1,4 +1,4 @@
 # Allow vendor_qti_init_shell to write to vendor_sysfs_scsi_host
 allow vendor_qti_init_shell vendor_sysfs_scsi_host:file w_file_perms;
 
-allow vendor_qti_init_shell kmsg_device:chr_file { open write };
+allow vendor_qti_init_shell kmsg_device:chr_file w_file_perms;

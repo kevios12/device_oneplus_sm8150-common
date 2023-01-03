@@ -12,4 +12,4 @@ allow kernel oem_block_device:blk_file rw_file_perms;
 # Allow kernel to read and write to param_block_device
 allow kernel param_block_device:blk_file rw_file_perms;
 
-allow kernel kernel:capability { kill };
+allow kernel kernel:capability kill;
