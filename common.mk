@@ -390,8 +390,8 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/privapp-permissions-qti.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-permissions-qti.xml
 
 # Touch
-#PRODUCT_PACKAGES += \
-#    vendor.lineage.touch@1.0-service.oneplus_msmnile
+PRODUCT_PACKAGES += \
+    vendor.lineage.touch@1.0-service.oneplus_msmnile
 
 # tri-state key
 PRODUCT_PACKAGES += \
@@ -454,3 +454,32 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 
 # Dolby
 $(call inherit-product, hardware/dolby/dolby.mk)
+
+# OnePlus Apps
+$(call inherit-product-if-exists, vendor/oneplus/camera/camera-vendor.mk)
+
+# OnePlus Apps props
+PRODUCT_VENDOR_PROPERTIES += \
+    vendor.product.manufacturer=OPD \
+    ro.vendor.camera.res.fmq.size=1048576
+
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.com.google.lens.oem_camera_package=com.oneplus.camera
+
+PRODUCT_SYSTEM_PROPERTIES += \
+    persist.camera.assert.panic=true \
+    persist.camera.privapp.list=com.oneplus.factorymode,com.oneplus.camera,com.oem.autotest,com.oneplus.healthcheck \
+    ro.opcamera.support=true \
+    ro.vendor.product.manufacturer.db=OP_PHONE \
+    ro.vendor.product.device.db=OP_DEVICE
+
+PRODUCT_SYSTEM_EXT_PROPERTIES += \
+    persist.vendor.camera.privapp.list=com.oneplus.factorymode,com.oneplus.camera,com.oem.autotest,com.oneplus.healthcheck \
+    vendor.camera.aux.packagelist=org.codeaurora.snapcam,com.oneplus.factorymode,com.oneplus.camera
+
+PRODUCT_VENDOR_PROPERTIES += \
+    ro.camera.notify_nfc=1
+
+# grant apps where not whitelisted of signature|Permissions
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.control_privapp_permissions=log
