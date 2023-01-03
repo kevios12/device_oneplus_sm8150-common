@@ -28,12 +28,12 @@ setup_vendor "${DEVICE_COMMON}" "${VENDOR}" "${ANDROID_ROOT}" true
 write_headers "guacamole guacamoleb guacamoleg guacamoles hotdog hotdogb hotdogg"
 
 # The standard common blobs
-write_makefiles "${MY_DIR}/proprietary-files.txt" true
+write_makefiles "${MY_DIR}/extract-utils/proprietary-files.txt" true
 
 # Finish
 write_footers
 
-if [ -s "${MY_DIR}/../${DEVICE}/proprietary-files.txt" ]; then
+if [ -s "${MY_DIR}/../${DEVICE}/extract-utils/proprietary-files.txt" ]; then
     # Reinitialize the helper for device
     setup_vendor "${DEVICE}" "${VENDOR}" "${ANDROID_ROOT}" false
 
@@ -41,7 +41,7 @@ if [ -s "${MY_DIR}/../${DEVICE}/proprietary-files.txt" ]; then
     write_headers
 
     # The standard device blobs
-    write_makefiles "${MY_DIR}/../${DEVICE}/proprietary-files.txt" true
+    write_makefiles "${MY_DIR}/../${DEVICE}/extract-utils/proprietary-files.txt" true
 
     # Finish
     write_footers

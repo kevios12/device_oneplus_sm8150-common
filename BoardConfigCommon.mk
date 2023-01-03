@@ -52,11 +52,11 @@ BOARD_USES_QCOM_HARDWARE := true
 TARGET_BOARD_PLATFORM := msmnile
 
 # Properties
-TARGET_ODM_PROP += $(VENDOR_PATH)/odm.prop
-TARGET_PRODUCT_PROP += $(VENDOR_PATH)/product.prop
-TARGET_SYSTEM_PROP += $(VENDOR_PATH)/system.prop
-TARGET_SYSTEM_EXT_PROP += $(VENDOR_PATH)/system_ext.prop
-TARGET_VENDOR_PROP += $(VENDOR_PATH)/vendor.prop
+TARGET_ODM_PROP += $(VENDOR_PATH)/configs/props/odm.prop
+TARGET_PRODUCT_PROP += $(VENDOR_PATH)/configs/props/product.prop
+TARGET_SYSTEM_PROP += $(VENDOR_PATH)/configs/props/system.prop
+TARGET_SYSTEM_EXT_PROP += $(VENDOR_PATH)/configs/props/system_ext.prop
+TARGET_VENDOR_PROP += $(VENDOR_PATH)/configs/props/vendor.prop
 
 # A/B
 AB_OTA_UPDATER := true
@@ -80,7 +80,7 @@ BOARD_SUPPORTS_SOUND_TRIGGER := true
 USE_CUSTOM_AUDIO_POLICY := 1
 
 # Bluetooth
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(VENDOR_PATH)/bluetooth/include
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(VENDOR_PATH)/hardware/bluetooth/include
 
 # Camera
 TARGET_USES_QTI_CAMERA_DEVICE := true
@@ -104,12 +104,12 @@ TARGET_USES_ION := true
 TARGET_ENABLE_MEDIADRM_64 := true
 
 # Filesystem
-TARGET_FS_CONFIG_GEN := $(VENDOR_PATH)/config.fs
+TARGET_FS_CONFIG_GEN := $(VENDOR_PATH)/configs/config.fs
 
 # HIDL
-DEVICE_MATRIX_FILE += $(VENDOR_PATH)/compatibility_matrix.xml
-DEVICE_MANIFEST_FILE += $(VENDOR_PATH)/manifest.xml
-ODM_MANIFEST_FILES += $(VENDOR_PATH)/manifest-qva.xml
+DEVICE_MATRIX_FILE += $(VENDOR_PATH)/configs/manifest/compatibility_matrix.xml
+DEVICE_MANIFEST_FILE += $(VENDOR_PATH)/configs/manifest/manifest.xml
+ODM_MANIFEST_FILES += $(VENDOR_PATH)/configs/manifest/manifest-qva.xml
 
 # Init
 TARGET_INIT_VENDOR_LIB := //$(VENDOR_PATH):libinit_oneplus-sm8150
