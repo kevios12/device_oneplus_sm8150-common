@@ -453,7 +453,7 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     ro.surface_flinger.wcg_composition_dataspace=143261696
 
 # Dolby
-$(call inherit-product, hardware/dolby/dolby.mk)
+$(call inherit-product, $(LOCAL_PATH)/hardware/dolby/dolby.mk)
 
 # OnePlus Apps
 $(call inherit-product-if-exists, vendor/oneplus/camera/camera-vendor.mk)
