@@ -30,8 +30,8 @@ import static com.yaap.device.DeviceSettings.ModeSwitch.DCModeSwitch.KEY_DC_SWIT
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.os.UserHandle;
 import android.content.SharedPreferences;
-import android.content.UserHandle;
 import android.provider.Settings;
 import androidx.preference.PreferenceManager;
 
@@ -63,34 +63,37 @@ public class Startup extends BroadcastReceiver {
     public void onReceive(final Context context, final Intent intent) {
         final SharedPreferences dePrefs = Constants.getDESharedPrefs(context);
 
-        if (intent.getAction().equals(ACTION_BOOT_COMPLETED)) {
-            if (!dePrefs.getBoolean(KEY_MIGRATION_DONE, false)) {
-                // migration of old user encrypted preferences
-                final SharedPreferences oldPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-                final SharedPreferences.Editor oldPrefsEditor = oldPrefs.edit();
-                final SharedPreferences.Editor dePrefsEditor = dePrefs.edit();
+        final boolean migrationDone = dePrefs.getBoolean(KEY_MIGRATION_DONE, false);
+        if (!migrationDone && intent.getAction().equals(ACTION_BOOT_COMPLETED)) {
+            // migration of old user encrypted preferences
+            final SharedPreferences oldPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+            final SharedPreferences.Editor oldPrefsEditor = oldPrefs.edit();
+            final SharedPreferences.Editor dePrefsEditor = dePrefs.edit();
 
-                for (String prefKey : sKeyFileMap.keySet()) {
-                    if (!oldPrefs.contains(prefKey)) continue;
-                    dePrefsEditor.putBoolean(prefKey, oldPrefs.getBoolean(prefKey, false));
-                    oldPrefsEditor.remove(prefKey);
-                }
-
-                dePrefsEditor.putBoolean(KEY_MIGRATION_DONE, true);
-                // must use commit (and not apply) because of what follows!
-                dePrefsEditor.commit();
-                oldPrefsEditor.commit();
+            for (String prefKey : sKeyFileMap.keySet()) {
+                if (!oldPrefs.contains(prefKey)) continue;
+                dePrefsEditor.putBoolean(prefKey, oldPrefs.getBoolean(prefKey, false));
+                oldPrefsEditor.remove(prefKey);
             }
 
-            // Touchscreen gestures
-            TouchscreenGestureSettings.MainSettingsFragment.restoreTouchscreenGestureStates(context);
+            dePrefsEditor.putBoolean(KEY_MIGRATION_DONE, true);
+            // must use commit (and not apply) because of what follows!
+            dePrefsEditor.commit();
+            oldPrefsEditor.commit();
         }
 
+	    context.startServiceAsUser(
+                new Intent(context, ClientPackageObserverService.class),
+                UserHandle.SYSTEM
+    	);
         // restoring state from DE shared preferences
         for (Map.Entry<String, String> set : sKeyFileMap.entrySet()) {
             final String prefKey = set.getKey();
             final String file = set.getValue();
             restore(file, dePrefs.getBoolean(prefKey, false));
         }
+
+        // Touchscreen gestures
+        TouchscreenGestureSettings.MainSettingsFragment.restoreTouchscreenGestureStates(context);
     }
 }
