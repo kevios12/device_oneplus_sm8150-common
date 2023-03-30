@@ -341,32 +341,6 @@ PRODUCT_PACKAGES += \
     OnePlusCameraOverlay \
     OnePlusGalleryOverlay
 
-# Platform
-TARGET_BOARD_PLATFORM := msmnile
-
-# QTI Components
-TARGET_COMMON_QTI_COMPONENTS := \
-    adreno \
-    audio \
-    av \
-    bt \
-    display \
-    media-legacy \
-    overlay \
-    perf \
-    telephony \
-    usb \
-    wfd
-
-# USB
-PRODUCT_PROPERTY_OVERRIDES += \
-    vendor.usb.diag.func.name=diag \
-    vendor.usb.use_ffs_mtp=0
-
-# Vibrator
-PRODUCT_PACKAGES += \
-    vendor.qti.hardware.vibrator.service.oneplus
-
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/nfc/libnfc-nxp.conf:$(TARGET_COPY_OUT_VENDOR)/etc/libnfc-nxp.conf \
     $(LOCAL_PATH)/configs/nfc/libnfc-nci.conf:$(TARGET_COPY_OUT_PRODUCT)/etc/libnfc-nci.conf
