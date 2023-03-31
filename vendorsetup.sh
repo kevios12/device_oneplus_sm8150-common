@@ -62,8 +62,8 @@ while true; do
 			# DeviceTree
 			echo -e "-> Syncing Device Specific Trees ...${ENDCOLOR}"
 			if [[ -d "$OP_DEVICE_PATH" ]]; then
-			echo -e "${RED}-> $OP_DEVICE_PATH already exists, removing ...${ENDCOLOR}"
-			rm -rf $OP_DEVICE_PATH
+				echo -e "${RED}-> $OP_DEVICE_PATH already exists, removing ...${ENDCOLOR}"
+				rm -rf $OP_DEVICE_PATH
 			fi
 			echo -e "${YELLOW}-> Cloning ..."
 			$GIT_SILENT $GIT_KEVIOS12/$GIT_HOTDOGB.$GIT -b ancient-13 $OP_DEVICE_PATH
@@ -72,8 +72,8 @@ while true; do
 			# VENDOR
 			echo -e "-> Syncing Device Specific Vendor ...${ENDCOLOR}"
 			if [[ -d "$OP1_VENDOR_PATH" && -d "$OP2_VENDOR_PATH" ]]; then
-			echo -e "${RED}-> Device Specific Vendor already exists, removing ..."
-			rm -rf $OP1_VENDOR_PATH && rm -rf $OP2_VENDOR_PATH
+				echo -e "${RED}-> Device Specific Vendor already exists, removing ..."
+				rm -rf $OP1_VENDOR_PATH && rm -rf $OP2_VENDOR_PATH
 			fi
 			echo -e "${YELLOW}-> Cloning ..."
 			$GIT_SILENT $GIT_YAAP/$GIT_VENDOR_COMMON.$GIT -b $BRANCH1 $OP1_VENDOR_PATH
@@ -83,8 +83,8 @@ while true; do
 			# QCOM
 			echo -e "-> Syncing QCOM Specific Repositories ...${ENDCOLOR}"
 			if [[ -d "$QCOM_DEVICE_PATH" && -d "$QCOM_VENDOR_PATH" ]]; then
-			echo -e "${RED}-> QCOM Specific Repositories already exists, removing ..."
-			rm -rf $QCOM_VENDOR_PATH && rm -rf $QCOM_DEVICE_PATH
+				echo -e "${RED}-> QCOM Specific Repositories already exists, removing ..."
+				rm -rf $QCOM_VENDOR_PATH && rm -rf $QCOM_DEVICE_PATH
 			fi
 			echo -e "${YELLOW}-> Cloning ..."
 			#fallback
@@ -96,8 +96,8 @@ while true; do
 			# Kernel
 			echo -e "-> Syncing Gulch_r Kernel ...${ENDCOLOR}"
 			if [[ -d "$KERNEL_PATH" ]]; then
-			echo -e "${RED}-> Gulch_r Kernel already exists, removing ..."
-			rm -rf $KERNEL_PATH
+				echo -e "${RED}-> Gulch_r Kernel already exists, removing ..."
+				rm -rf $KERNEL_PATH
 			fi
 			echo -e "${YELLOW}-> Cloning ..."
 			$GIT_SILENT $DEPTH $GIT_YAAP/$GIT_KERNEL.$GIT -b $BRANCH1 $KERNEL_PATH
@@ -113,16 +113,48 @@ while true; do
 			echo -e "${YELLOW}-> Cloning ..."
 			rm -r $QCOM_SEPOLICY_PATH && $GIT_SILENT $GIT_ANCIENT/$GIT_QCOM_SEPOLICY -b $BRANCH2 $QCOM_SEPOLICY_PATH && echo -e "${GREEN}-> DONE${ENDCOLOR}\n"
 			tput sgr0
-			exit 0
+			echo "Start Build? (Y/N):"
+			read Start
+			tput sgr0 && clear
+			if [[ $Start == y* ]]; then
+				echo "Starting Ancient Build System ..."
+				lunch ancient_hotdogb-userdebug
+				mka bacon -j$(nproc --all)
+			else
+				echo -e "${RED}Aborted. Start Build manually!${ENDCOLOR}"
+			fi
+			break
 		elif [[ $confirmation == "n" ]]; then
 			echo -e "${RED}Aborted. Files won't be deleted${ENDCOLOR}"
+			tput sgr0
+			echo "Start Build? (Y/N):"
+			read Start
+			tput sgr0 && clear
+			if [[ $Start == y* ]]; then
+				echo "Starting Ancient Build System ..."
+				lunch ancient_hotdogb-userdebug
+				mka bacon -j$(nproc --all)
+			else
+				echo -e "${RED}Aborted. Start Build manually!${ENDCOLOR}"
+			fi
 			break
 		else
 			echo "Invalid Answer. Type 'y' for Yes or 'n' for No!"
 		fi
 
 	elif [[ $answer == "n" ]]; then
-		echo -e "${RED}Aborted. Build manually.${ENDCOLOR}"
+		echo -e "${RED}Aborted. Start Build manually!${ENDCOLOR}"
+		tput sgr0
+		echo "Start Build? (Y/N):"
+		read Start
+		tput sgr0 && clear
+		if [[ $Start == y* ]]; then
+			echo "Starting Ancient Build System ..."
+			lunch ancient_hotdogb-userdebug
+			mka bacon -j$(nproc --all)
+		else
+			echo -e "${RED}Aborted. Start Build manually!${ENDCOLOR}"
+		fi
 		break
 	else
 		echo "Invalid Answer. Type 'y' for Yes or 'n' for No!"
