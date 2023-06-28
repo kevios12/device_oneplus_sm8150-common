@@ -102,3 +102,9 @@ config.disable_rtt=true
 # WiFi Display
 persist.debug.wfd.enable=1
 persist.sys.wfd.virtual=0
+
+# Misc
+ro.boot.vendor.overlay.static=false
+ro.surface_flinger.supports_background_blur=1
+ro.hwui.disable_scissor_opt=false
+ro.zygote.disable_gl_preload=true
