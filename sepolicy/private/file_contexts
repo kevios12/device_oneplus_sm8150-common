@@ -1,6 +1,5 @@
 # Binaries
 /system/bin/als_correction_service    u:object_r:als_correction_service_exec:s0
 
-# Camera
-ro.camera.req.fmq.     u:object_r:exported_default_prop:s0
-ro.camera.res.fmq.     u:object_r:exported_default_prop:s0
+# Data files
+/data/misc/aosp(/.*)?                 u:object_r:aosp_data_file:s0
