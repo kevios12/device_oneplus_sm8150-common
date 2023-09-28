@@ -15,17 +15,19 @@
  */
 package com.yaap.device.DeviceSettings;
 
-import static com.android.internal.util.yaap.AutoSettingConsts.MODE_DISABLED;
-import static com.android.internal.util.yaap.AutoSettingConsts.MODE_NIGHT;
-import static com.android.internal.util.yaap.AutoSettingConsts.MODE_TIME;
-import static com.android.internal.util.yaap.AutoSettingConsts.MODE_MIXED_SUNSET;
-import static com.android.internal.util.yaap.AutoSettingConsts.MODE_MIXED_SUNRISE;
+import static com.android.internal.util.ancient.AutoSettingConsts.MODE_DISABLED;
+import static com.android.internal.util.ancient.AutoSettingConsts.MODE_NIGHT;
+import static com.android.internal.util.ancient.AutoSettingConsts.MODE_TIME;
+import static com.android.internal.util.ancient.AutoSettingConsts.MODE_MIXED_SUNSET;
+import static com.android.internal.util.ancient.AutoSettingConsts.MODE_MIXED_SUNRISE;
 
 import android.app.Fragment;
 import android.app.TimePickerDialog;
 import android.content.ContentResolver;
 import android.os.Bundle;
 import android.os.UserHandle;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.provider.Settings;
 import android.text.format.DateFormat;
 import android.view.MenuItem;
@@ -138,12 +140,12 @@ public class DCDimScheduleSettings extends CollapsingToolbarBaseActivity
             return true;
         }
 
-        private String[] getCustomTimeSetting() {
-            String value = Settings.Secure.getStringForUser(getActivity().getContentResolver(),
-                    Settings.Secure.DC_DIM_AUTO_TIME, UserHandle.USER_CURRENT);
-            if (value == null || value.equals("")) value = "20:00,07:00";
-            return value.split(",", 0);
-        }
+	private void saveCustomTimeSetting(String timeSetting) {
+    		SharedPreferences sharedPreferences = getActivity().getSharedPreferences("custom_time", Context.MODE_PRIVATE);
+    		SharedPreferences.Editor editor = sharedPreferences.edit();
+    		editor.putString("custom_time_setting", timeSetting);
+    		editor.apply();
+	}
 
         private void updateTimeEnablement(int mode) {
             mSincePref.setEnabled(mode == MODE_TIME || mode == MODE_MIXED_SUNRISE);
@@ -194,11 +196,16 @@ public class DCDimScheduleSettings extends CollapsingToolbarBaseActivity
             nHour += String.valueOf(hour);
             nMinute += String.valueOf(minute);
             times[since ? 0 : 1] = nHour + ":" + nMinute;
-            Settings.Secure.putStringForUser(getActivity().getContentResolver(),
-                    Settings.Secure.DC_DIM_AUTO_TIME,
-                    times[0] + "," + times[1], UserHandle.USER_CURRENT);
+    	    // Store the updated times in SharedPreferences
+    	    saveCustomTimeSetting(times[0] + "," + times[1]);
             updateTimeSummary(times, Integer.parseInt(mModePref.getValue()));
         }
+
+	private String[] getCustomTimeSetting() {
+    		SharedPreferences sharedPreferences = getActivity().getSharedPreferences("custom_time", Context.MODE_PRIVATE);
+    		String timeSetting = sharedPreferences.getString("custom_time_setting", "20:00,07:00");
+    		return timeSetting.split(",", 0);
+	}
 
 
         @Override

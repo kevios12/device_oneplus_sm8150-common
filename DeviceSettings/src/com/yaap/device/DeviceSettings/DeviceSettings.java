@@ -17,11 +17,11 @@
 */
 package com.yaap.device.DeviceSettings;
 
-import static com.android.internal.util.yaap.AutoSettingConsts.MODE_DISABLED;
-import static com.android.internal.util.yaap.AutoSettingConsts.MODE_NIGHT;
-import static com.android.internal.util.yaap.AutoSettingConsts.MODE_TIME;
-import static com.android.internal.util.yaap.AutoSettingConsts.MODE_MIXED_SUNSET;
-import static com.android.internal.util.yaap.AutoSettingConsts.MODE_MIXED_SUNRISE;
+import static com.android.internal.util.ancient.AutoSettingConsts.MODE_DISABLED;
+import static com.android.internal.util.ancient.AutoSettingConsts.MODE_NIGHT;
+import static com.android.internal.util.ancient.AutoSettingConsts.MODE_TIME;
+import static com.android.internal.util.ancient.AutoSettingConsts.MODE_MIXED_SUNSET;
+import static com.android.internal.util.ancient.AutoSettingConsts.MODE_MIXED_SUNRISE;
 
 import android.content.ContentResolver;
 import android.content.Context;
@@ -280,8 +280,13 @@ public class DeviceSettings extends PreferenceFragment implements
 
     private void updateDCScheduleSummary() {
         if (mDCSchedulePref == null) return;
-        int mode = Settings.Secure.getIntForUser(getActivity().getContentResolver(),
-                Settings.Secure.DC_DIM_AUTO_MODE, 0, UserHandle.USER_CURRENT);
+
+       SharedPreferences sharedPreferences = getActivity().getSharedPreferences("DCMode", Context.MODE_PRIVATE);
+
+       int mode = sharedPreferences.getInt("DC_DIM_AUTO_MODE", MODE_DISABLED); 
+
+     // int mode = Settings.Secure.getIntForUser(getActivity().getContentResolver(),
+     //      Settings.Secure.DC_DIM_AUTO_MODE, 0, UserHandle.USER_CURRENT);
         switch (mode) {
             default:
             case MODE_DISABLED:
