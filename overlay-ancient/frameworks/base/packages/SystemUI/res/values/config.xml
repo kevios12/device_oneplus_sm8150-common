@@ -30,4 +30,10 @@
             1 - LOCAL HBM
     -->
     <integer name="config_udfps_hbm_type">0</integer>
+
+    <!-- FPSInfoService FPS node file path -->
+    <string name="config_fpsInfoSysNode" translatable="false">/sys/class/drm/sde-crtc-0/measured_fps</string>
+
+    <!-- FPS measure interval in milliseconds, default 1000 -->
+    <integer name="config_fpsReadInterval">500</integer>
 </resources>
