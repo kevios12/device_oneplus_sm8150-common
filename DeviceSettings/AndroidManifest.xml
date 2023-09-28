@@ -88,6 +88,10 @@
             </intent-filter>
         </receiver>
 
+        <service android:name="com.yaap.DeviceSettings.ClientPackageObserverService"
+            android:exported="false">
+        </service>
+
         <!-- Quick Settings Tiles -->
         <service
             android:name="com.yaap.device.DeviceSettings.DCModeTileService"
@@ -177,5 +181,8 @@
                 <action android:name="android.content.action.SEARCH_INDEXABLES_PROVIDER" />
             </intent-filter>
         </provider>
+        <service
+            android:name=".ClientPackageObserverService"
+            android:exported="false" />
     </application>
 </manifest>

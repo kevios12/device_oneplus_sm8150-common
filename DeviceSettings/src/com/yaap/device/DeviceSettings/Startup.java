@@ -30,6 +30,7 @@ import static com.yaap.device.DeviceSettings.ModeSwitch.DCModeSwitch.KEY_DC_SWIT
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.os.UserHandle;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.provider.Settings;
@@ -87,6 +88,11 @@ public class Startup extends BroadcastReceiver {
         }
 
         TouchscreenGestureSettings.MainSettingsFragment.restoreTouchscreenGestureStates(context);
+
+	    context.startServiceAsUser(
+                new Intent(context, ClientPackageObserverService.class),
+                UserHandle.SYSTEM
+    	);
 
         // restoring state from DE shared preferences
         for (Map.Entry<String, String> set : sKeyFileMap.entrySet()) {

@@ -5,3 +5,8 @@ allow system_server { proc_sensor proc_ultrasound proc_touchpanel }:dir search;
 
 allow system_server sysfs_aod:file rw_file_perms;
 r_dir_file(system_server, proc_touchpanel)
+
+allow system_server hal_cameraHIDL_hwservice:hwservice_manager { find };
+binder_call(system_server, hal_cameraHIDL_default)
+
+get_prop(system_server, vendor_camera_prop)
