@@ -968,13 +968,6 @@ service vendor.audio-hal /vendor/bin/hw/android.hardware.audio.service
     ioprio rt 4
     onrestart restart audioserver
 
-# Smart Charging
-on boot
-   chown system system /sys/class/power_supply/battery/charging_enabled
-   chmod 0666 /sys/class/power_supply/battery/charging_enabled
-   chown system system /sys/class/power_supply/battery/input_suspend
-   chmod 0666 /sys/class/power_supply/battery/input_suspend
-
     # Battery Health
     chown system system /sys/class/power_supply/bms/charge_full
     chmod 0644 /sys/class/power_supply/bms/charge_full
@@ -984,8 +977,6 @@ on boot
     chmod 0644 /sys/class/power_supply/bms/charge_full_design
     chown system system /sys/class/power_supply/bms/cycle_counts
     chmod 0644 /sys/class/power_supply/bms/cycle_counts
-    chown system system /sys/class/power_supply/bms/cycle_count
-    chmod 0644 /sys/class/power_supply/bms/cycle_count
     chown system system /sys/class/power_supply/bms/charge_counter
     chmod 0644 /sys/class/power_supply/bms/charge_counter
     chown system system /sys/class/power_supply/bms/battery_health
