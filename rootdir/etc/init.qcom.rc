@@ -454,6 +454,9 @@ on post-fs-data
     mkdir /data/vendor/qti-logkit/socket-public/ 2750 system diag
     mkdir /data/vendor/qti-logkit/logdata/ 2750 system shell
 
+    # Lineage Health
+    chown system system /sys/class/power_supply/battery/mmi_charging_enable
+
     #Create SWAP related dirs
     mkdir /data/vendor/swap 0770 root system
     chmod 2770 /data/vendor/swap
@@ -968,7 +971,8 @@ service vendor.audio-hal /vendor/bin/hw/android.hardware.audio.service
     ioprio rt 4
     onrestart restart audioserver
 
-    # Battery Health
+# Battery Health 
+on boot
     chown system system /sys/class/power_supply/bms/charge_full
     chmod 0644 /sys/class/power_supply/bms/charge_full
     chown system system /sys/class/power_supply/bms/charge_now_raw
