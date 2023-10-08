@@ -39,47 +39,6 @@
     <string name="color_mode_balance_green">Зелений відтінок</string>
     <string name="color_mode_balance_blue">Синій відтінок</string>
 
-    <!-- Screen off Gestures : Input -->
-    <string name="touchscreen_gesture_settings_title">Жести на екрані</string>
-    <string name="touchscreen_gesture_settings_summary">Виконуйте різні жести на вимкненому екрані для швидких дій</string>
-    <string name="touchscreen_gestures_haptic_feedback_title">Тактильний зворотний зв\'язок</string>
-    <string name="touchscreen_gestures_haptic_feedback_summary">Вібрувати при виявленні жесту на вимкненому екрані</string>
-    <string name="touchscreen_gesture_two_finger_down_swipe_title">Проведіть двома пальцями вниз</string>
-    <string name="touchscreen_gesture_one_finger_up_swipe_title">Проведіть одним пальцем угору</string>
-    <string name="touchscreen_gesture_one_finger_up_swipe_home_title">Проведіть пальцем угору від кнопки Додому</string>
-    <string name="touchscreen_gesture_one_finger_down_swipe_title">Проведіть одним пальцем вниз</string>
-    <string name="touchscreen_gesture_one_finger_left_swipe_title">Проведіть ліворуч одним пальцем</string>
-    <string name="touchscreen_gesture_one_finger_right_swipe_title">Проведіть праворуч одним пальцем</string>
-    <string name="touchscreen_gesture_single_tap_title">Одне натискання</string>
-    <string name="touchscreen_gesture_up_arrow_title">Намалювати \"V\"</string>
-    <string name="touchscreen_gesture_down_arrow_title">Намалювати \"Λ\"</string>
-    <string name="touchscreen_gesture_left_arrow_title">Намалювати \"&lt;\"</string>
-    <string name="touchscreen_gesture_right_arrow_title">Намалювати \"&gt;\"</string>
-    <string name="touchscreen_gesture_letter_c_title">Намалювати літеру \"C\"</string>
-    <string name="touchscreen_gesture_letter_e_title">Намалювати літеру \"e\"</string>
-    <string name="touchscreen_gesture_letter_o_title">Намалювати літеру \"O\"</string>
-    <string name="touchscreen_gesture_letter_m_title">Намалювати літеру \"M\"</string>
-    <string name="touchscreen_gesture_letter_s_title">Намалювати літеру \"S\"</string>
-    <string name="touchscreen_gesture_letter_v_title">Намалювати літеру \"V\"</string>
-    <string name="touchscreen_gesture_letter_w_title">Намалювати літеру \"W\"</string>
-    <string name="touchscreen_gesture_letter_z_title">Намалювати літеру \"Z\"</string>
-    <!-- Screen off Gestures : Actions -->
-    <string name="touchscreen_gesture_action_dialog_title">Дія жестами</string>
-    <string name="touchscreen_gesture_action_do_nothing">Нічого не робити</string>
-    <string name="touchscreen_gesture_action_flashlight">Увімкнути ліхтарик</string>
-    <string name="touchscreen_gesture_action_camera">Відкрити камеру</string>
-    <string name="touchscreen_gesture_action_browser">Відкрити браузер</string>
-    <string name="touchscreen_gesture_action_dialer">Відкрити номеронабирач</string>
-    <string name="touchscreen_gesture_action_email">Переглянути електронні листи</string>
-    <string name="touchscreen_gesture_action_messages">Переглянути повідомлення</string>
-    <string name="touchscreen_gesture_action_play_pause_music">Відтворити/призупинити музику</string>
-    <string name="touchscreen_gesture_action_previous_track">Відтворити попередній музичний трек</string>
-    <string name="touchscreen_gesture_action_next_track">Відтворити наступний музичний трек</string>
-    <string name="touchscreen_gesture_action_volume_down">Знизити гучність медіа</string>
-    <string name="touchscreen_gesture_action_volume_up">Збільшити гучність медіа</string>
-    <string name="touchscreen_gesture_action_ambient_display">Показати Ambient Display</string>
-    <string name="touchscreen_gesture_action_wake_device">Розбудити пристрій</string>
-
     <!-- Refresh rate -->
     <string name="refresh_title">Оновлення екрану</string>
     <string name="tile_refresh_rate">Частота оновлення екрану</string>

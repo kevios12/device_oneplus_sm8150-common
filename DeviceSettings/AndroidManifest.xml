@@ -66,13 +66,6 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".TouchscreenGestureSettings"
-            android:label="@string/touchscreen_gesture_settings_title"
-            android:theme="@style/Theme.SubSettingsBase"
-            android:exported="false">
-        </activity>
-
         <receiver
             android:name="com.yaap.device.DeviceSettings.Startup"
             android:directBootAware="true"

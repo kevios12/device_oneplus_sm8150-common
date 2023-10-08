@@ -83,11 +83,8 @@ public class Startup extends BroadcastReceiver {
                 dePrefsEditor.commit();
                 oldPrefsEditor.commit();
 
-                TouchscreenGestureSettings.MainSettingsFragment.migrateTouchscreenGestureStates(context);
             }
         }
-
-        TouchscreenGestureSettings.MainSettingsFragment.restoreTouchscreenGestureStates(context);
 
 	    context.startServiceAsUser(
                 new Intent(context, ClientPackageObserverService.class),
@@ -102,12 +99,10 @@ public class Startup extends BroadcastReceiver {
         }
 
         // reset prefs that reflect a state that does not retain a reboot
-        List<String> touchKeys = TouchscreenGestureSettings.MainSettingsFragment.getPrefKeys(context);
         Map<String,?> keys = dePrefs.getAll();
         for (Map.Entry<String,?> entry : keys.entrySet()) {
             final String key = entry.getKey();
             if (sKeyFileMap.containsKey(key)) continue;
-            if (touchKeys.contains(key)) continue;
             if (KEY_MIGRATION_DONE.equals(key)) continue;
             dePrefs.edit().remove(key).commit();
         }

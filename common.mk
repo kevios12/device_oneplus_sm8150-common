@@ -454,10 +454,6 @@ PRODUCT_VENDOR_PROPERTIES += \
 PRODUCT_PACKAGES += \
     vendor.lineage.health-service.default
 
-# Touch
-PRODUCT_PACKAGES += \
-    vendor.lineage.touch@1.0-service.oneplus_msmnile
-
 # tri-state key
 PRODUCT_PACKAGES += \
     tri-state-key_daemon
