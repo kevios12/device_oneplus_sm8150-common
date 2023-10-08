@@ -987,3 +987,7 @@ on boot
     chmod 0644 /sys/class/power_supply/bms/battery_health
     chown system system /sys/class/power_supply/bms/battery_type
     chmod 0644 /sys/class/power_supply/bms/battery_type
+    chown system system /sys/class/power_supply/battery/input_suspend
+    chmod 0666 /sys/class/power_supply/battery/input_suspend
+    chown system system /sys/class/power_supply/battery/charging_enabled
+    chmod 0666 /sys/class/power_supply/battery/charging_enabled
